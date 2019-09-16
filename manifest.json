@@ -1,12 +1,12 @@
 {
-    "name": "Refoest App",
+    "name": "Refoest",
     "short_name": "Reforest",
-    "background_color": "#58D68D",
+    "background_color": "#ffffff",
     "theme_color": "#3BA668",
     "display": "standalone",
 	"icons": [{
     "src": "144.png",
     "sizes": "144x144"
   }],
-    "start_url": "index.html?launcher=true"
+    "start_url": "index.html"
 }

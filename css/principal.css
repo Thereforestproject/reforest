@@ -85,22 +85,12 @@ button.bg-primary:focus {
     border-radius: 0.25rem;
 }
 
-@media (max-width: 900px) {
-    .hero_text{
-        /* padding-top: 100px; */
-    }
-  }
-
 @media (min-width: 1000px) {
     .prueba {
       padding-top: 55px;
         padding-bottom: 55px;
         padding-left: 100px;
         padding-right: 613px
-    }
-
-    .hero_text{
-        padding-top: 170px
     }
   }
 

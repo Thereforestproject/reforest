@@ -93,3 +93,12 @@ button.bg-primary:focus {
         padding-right: 613px
     }
   }
+
+
+
+  #hero{
+      background-image: url(/img/bosque.png);
+      background-size: cover;
+      padding-top: 100px;
+      min-height: 550px;
+  }

@@ -240,7 +240,6 @@ and open the template in the editor.
             usuarioUl.innerHTML = html;
 
 
-  window.scrollTo(0, 20000);
 
         });
 
@@ -254,9 +253,15 @@ and open the template in the editor.
                     var mensaje = elemet.mensaje;
 
                     html += "<li class=\"list-group-item\"><b>" + nombre + "<br> </b>" + mensaje + "</li>";
+                    window.scrollTo(0, 200);
+
 
                 });
                 chatUl.innerHTML = html;
+ window.scrollTo(0, 20000);
+
+
+
             });
 
     </script>

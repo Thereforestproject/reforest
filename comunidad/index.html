@@ -69,11 +69,11 @@ and open the template in the editor.
                     <div class="col-12">
                         <div class="row">
                             <div id="imagen-perfil" class="col-3 text-center">
-                                <img src="/img/perfil_1.jpg" width="70px" alt="imagen" class="rounded-circle"
-                                    style=" border: 2.5px #ffffff solid">
+                                <!-- <img src="/img/perfil_1.jpg" width="70px" alt="imagen" class="rounded-circle"
+                                    style=" border: 2.5px #ffffff solid"> -->
                             </div>
                             <div id="datos-perfil" class="col-9">
-                                <span class="usuario">Angel Alcudia</span>
+                                <span id="usuario" class="usuario">Angel Alcudia</span>
                                 <span class="nivel" style="">Nivel 5</span>
                                 <div class="estadisticas">
                                     <div class="progress">
@@ -125,7 +125,7 @@ and open the template in the editor.
             </div>
 
             <div class="col-md-8 col-12" style="border: solid;">
-                Estadisticas de avance
+                Chat
 
 
 
@@ -137,7 +137,7 @@ and open the template in the editor.
                     </div>
                     <div>
                         <label for="mensaje">Mensaje</label>
-                        <input type="text" id="mensaje">
+                        <textarea name="" id="mensaje" cols="30" rows="10"></textarea>
                     </div>
                     <button type="button" id="btnEnviar">Enviar</button>
                 </form>
@@ -192,6 +192,7 @@ and open the template in the editor.
         var txtMensaje = document.getElementById('mensaje');
         var btnEnviar = document.getElementById('btnEnviar');
         var chatUl = document.getElementById('chatUl');
+        var usuarioUl = document.getElementById('usuario');
 
         btnEnviar.addEventListener('click', function () {
             var nombre = txtNombre.value;
@@ -203,11 +204,16 @@ and open the template in the editor.
                 nombre: nombre,
                 mensaje: mensaje
             });
+            var html = '';
+
+            html = "<span>" + nombre + "</span>";
+            usuarioUl.innerHTML = html;
         });
 
         firebase.database().ref('chat')
             .on('value', function (snapshot) {
                 var html = '';
+                var html_na = '';
                 snapshot.forEach(function (e) {
                     var elemet = e.val();
                     var nombre = elemet.nombre;

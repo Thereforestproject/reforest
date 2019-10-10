@@ -75,8 +75,10 @@
 
 	<!-- http://probosque.edomex.gob.mx/per -->
 	<div class="container" style="padding-top: 100px">
-		<div class="row">
-			<div class="col">
+		<div class="row" id="campanasUl">
+
+
+			<div class="col-3">
 				<div class="campanas">
 					<div class="card">
 						<img class="card-img-top" src="img/camp_1.jpg" alt="Card image cap">
@@ -90,8 +92,8 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="col">
+<!-- 
+			<div class="col-3">
 				<div class="campanas">
 					<div class="card">
 						<img class="card-img-top" src="img/img_prueba.jpg" alt="Card image cap">
@@ -105,7 +107,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col">
+			<div class="col-3">
 				<div class="campanas">
 					<div class="card">
 						<img class="card-img-top" src="img/camp_3.jpeg" alt="Card image cap">
@@ -119,7 +121,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col">
+			<div class="col-3">
 				<div class="campanas">
 					<div class="card">
 						<img class="card-img-top" src="img/camp_4.jpg" alt="Card image cap">
@@ -132,11 +134,75 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
+			
 
 		</div>
 	</div>
 
+
+
+	   <!-- The core Firebase JS SDK is always required and must be listed first -->
+	   <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+	   <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+   
+	   <!-- TODO: Add SDKs for Firebase products that you want to use
+		https://firebase.google.com/docs/web/setup#available-libraries -->
+   
+	   <script>
+		   // Your web app's Firebase configuration
+		   var firebaseConfig = {
+			   apiKey: "AIzaSyB4CgA911BNu-K3Irkymn9y127Rr3Chml8",
+			   authDomain: "reforest-cc105.firebaseapp.com",
+			   databaseURL: "https://reforest-cc105.firebaseio.com",
+			   projectId: "reforest-cc105",
+			   storageBucket: "",
+			   messagingSenderId: "949319571597",
+			   appId: "1:949319571597:web:44be13746ff7d5b3"
+		   };
+		   // Initialize Firebase
+		   firebase.initializeApp(firebaseConfig);
+   
+   
+
+		   var campanasUl = document.getElementById('campanasUl');
+   
+			   var nombre = "campaña vergas";
+			   var descripcion = "Des vergas";
+			   // var html = "<li><b>" + nombre + ": </b>" + mensaje + "</li>";
+			   // chatUl.innerHTML += html;
+   
+			   firebase.database().ref('campanias').push({
+				   nombre: nombre,
+				   descripcion: descripcion
+			   });
+
+			 var html = '';
+   
+			//    html = "<span>" + nombre + "</span>";
+			//    document.getElementById('mensaje').value = "";
+			//    usuarioUl.innerHTML = html;
+   
+   
+   
+   
+		   firebase.database().ref('campanias')
+			   .on('value', function (snapshot) {
+				   var html = '';
+				   var html_na = '';
+				   snapshot.forEach(function (e) {
+					   var elemet = e.val();
+					   var descripcion = elemet.descripcion;
+					   var nombre = elemet.nombre;
+   
+					   html +="<div class=\"col-3\"><div class=\"campanas\"><div class=\"card\"><img class=\"card-img-top\" src=\"img/camp_4.jpg\" alt=\"Card image cap\"><div class=\"card-body\"><h4 class=\"card-title\">"+ nombre + "</h4><p class=\"card-text\">" + descripcion + "</p><a href=\"#!\" class=\"btn btn-primary\">Más Información</a></div></div></div></div>";
+					// html += "<li class=\"list-group-item\"><b>" + nombre + "<br> </b>" + descripcion + "</li>";
+
+				   });
+				   campanasUl.innerHTML = html;
+			   });
+   
+	   </script>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

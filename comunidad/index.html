@@ -14,7 +14,11 @@ and open the template in the editor.
     <link rel="stylesheet" href="./../css/principal.css">
     <link rel="stylesheet" href="./../css/comunidad.css">
 
-
+    <!-- <style>
+        body {
+          width: 5000px;
+        }
+        </style> -->
 </head>
 
 <body>
@@ -124,52 +128,50 @@ and open the template in the editor.
                 </div>
             </div>
 
-            <div class="col-md-8 col-12" style="border: solid;">
+            <div class="col-md-8 col-12" style="border: solid; padding-bottom: 200px;">
                 Chat
 
-
-
-                <div id="bottom">
-
+                <div id="content" style="height: 100%; overflow: auto">
 
                     <div class="card" style="width: 18rem;">
-                        <ul class="list-group list-group-flush" id="chatUl">
+                        <ul class="list-group list-group-flush" style="height: 100%; overflow: auto" id="chatUl">
 
-                        </ul>
+
+                            <div class="card" style="width: 18rem;">
+                                <ul class="list-group list-group-flush" id="chatUl">
+
+                                </ul>
+                            </div>
                     </div>
-                </div>
 
-
-                <form class="fixed-bottom">
-                    <div>
-                        <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre">
+                    <!-- <div class="type_msg">
+                    <div class="input_msg_write">
+                      <input type="text" class="write_msg" placeholder="Type a message" />
+                      <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                     </div>
-                    <div>
-                        <label for="mensaje">Mensaje</label>
-                        <input type="text" id="mensaje">
+                  </div> -->
+
+
+
+
+
+
+
+                    <div class="container-fluid">
+                        <footer class="bg-light bg" style="height: 50;">
+                            <div class="container">
+                                <ul class="nav justify-content-center">
+                                    <li class="nav-item align-self-center">
+                                        <a class="nav-link active" href="index.html">
+                                            <img src="img/reforest.png" height="24">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </footer>
                     </div>
-                    <button type="button" id="btnEnviar">Enviar</button>
-                </form>
 
-
-
-
-                <div class="container-fluid">
-                    <footer class="bg-light bg" style="height: 50;">
-                        <div class="container">
-                            <ul class="nav justify-content-center">
-                                <li class="nav-item align-self-center">
-                                    <a class="nav-link active" href="index.html">
-                                        <img src="img/reforest.png" height="24">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </footer>
-                </div>
-
-                <!-- <ul id="chatUl">
+                    <!-- <ul id="chatUl">
                     <li>
                 <b>Nombre: </b> Mensaje
             </li>
@@ -178,87 +180,124 @@ and open the template in the editor.
             </li>
                 </ul> -->
 
+                </div>
             </div>
         </div>
-    </div>
+
+        <!-- Footer -->
+
+        <div class="container-fluid fixed-bottom">
+            <footer class="bg-light bg" style="height: 50;">
+                <div class="container">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item align-self-center">
+                            <div>
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre">
+                            </div>
+                        </li>
+                        <li class="nav-item align-self-center">
+                            <div>
+                                <label for="mensaje">Mensaje</label>
+                                <input type="text" id="mensaje">
+                            </div>
+                        </li>
+                        <li>
+                            <button type="button" id="btnEnviar">Enviar</button>
+
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
 
 
 
 
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
+        <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyB4CgA911BNu-K3Irkymn9y127Rr3Chml8",
-            authDomain: "reforest-cc105.firebaseapp.com",
-            databaseURL: "https://reforest-cc105.firebaseio.com",
-            projectId: "reforest-cc105",
-            storageBucket: "",
-            messagingSenderId: "949319571597",
-            appId: "1:949319571597:web:44be13746ff7d5b3"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyB4CgA911BNu-K3Irkymn9y127Rr3Chml8",
+                authDomain: "reforest-cc105.firebaseapp.com",
+                databaseURL: "https://reforest-cc105.firebaseio.com",
+                projectId: "reforest-cc105",
+                storageBucket: "",
+                messagingSenderId: "949319571597",
+                appId: "1:949319571597:web:44be13746ff7d5b3"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
 
 
-        var txtNombre = document.getElementById('nombre');
-        var txtMensaje = document.getElementById('mensaje');
-        var btnEnviar = document.getElementById('btnEnviar');
-        var chatUl = document.getElementById('chatUl');
-        var usuarioUl = document.getElementById('usuario');
+            var txtNombre = document.getElementById('nombre');
+            var txtMensaje = document.getElementById('mensaje');
+            var btnEnviar = document.getElementById('btnEnviar');
+            var chatUl = document.getElementById('chatUl');
+            var usuarioUl = document.getElementById('usuario');
 
-        btnEnviar.addEventListener('click', function () {
-            var nombre = txtNombre.value;
-            var mensaje = txtMensaje.value;
-            // var html = "<li><b>" + nombre + ": </b>" + mensaje + "</li>";
-            // chatUl.innerHTML += html;
+            btnEnviar.addEventListener('click', function () {
+                var nombre = txtNombre.value;
+                var mensaje = txtMensaje.value;
+                // var html = "<li><b>" + nombre + ": </b>" + mensaje + "</li>";
+                // chatUl.innerHTML += html;
 
-            firebase.database().ref('chat').push({
-                nombre: nombre,
-                mensaje: mensaje
-            });
-            var html = '';
-
-            html = "<span>" + nombre + "</span>";
-            usuarioUl.innerHTML = html;
-        });
-
-        firebase.database().ref('chat')
-            .on('value', function (snapshot) {
+                firebase.database().ref('chat').push({
+                    nombre: nombre,
+                    mensaje: mensaje
+                });
                 var html = '';
-                var html_na = '';
-                snapshot.forEach(function (e) {
-                    var elemet = e.val();
-                    var nombre = elemet.nombre;
-                    var mensaje = elemet.mensaje;
 
-                    html += "<li class=\"list-group-item\"><b>" + nombre + "<br> </b>" + mensaje + "</li>";
+                html = "<span>" + nombre + "</span>";
+                document.getElementById('mensaje').value = "";
+                usuarioUl.innerHTML = html;
+
+
+                window.scrollTo(0, 20000);
+
+            });
+
+            firebase.database().ref('chat')
+                .on('value', function (snapshot) {
+                    var html = '';
+                    var html_na = '';
+                    snapshot.forEach(function (e) {
+                        var elemet = e.val();
+                        var nombre = elemet.nombre;
+                        var mensaje = elemet.mensaje;
+
+                        html += "<li class=\"list-group-item\"><b>" + nombre + "<br> </b>" + mensaje + "</li>";
+                        window.scrollTo(0, 200);
+
+
+                    });
+                    chatUl.innerHTML = html;
+                    window.scrollTo(0, 20000);
+
+
 
                 });
-                chatUl.innerHTML = html;
-            });
 
 
-    </script>
+        </script>
 
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
 </body>
 

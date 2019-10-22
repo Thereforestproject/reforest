@@ -9,9 +9,10 @@ and open the template in the editor.
         <title>Perfil</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/principal.css">
-        <link rel="stylesheet" href="css/comunidad.css">
+        <link rel="stylesheet" href="./../css/bootstrap.css">
+        <link rel="stylesheet" href="./../css/principal.css">
+        <link rel="stylesheet" href="./../css/comunidad.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
     </head>
     <body>
 
@@ -28,24 +29,36 @@ and open the template in the editor.
                     <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
         
                         <ul class="navbar-nav align-items-center">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="comunidad.html">Inicio 
-                                    <span class="sr-only">(current)</span></a>
-                            </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="perfil.php">perfil</a>
+                                <a class="nav-link" href="index.html">Inicio 
+                                        <span class="sr-only">(current)</span></a>
+
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="profile.html">Perfil</a>
                             </li>
                         </ul>
         
                     </div>
                     <ul class="navbar-nav align-items-end">
-                        <li class="nav-item">
+                            <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div>
+                                            <img src="./img/perfil_1.jpg" width="40px" alt="imagen" class="rounded-circle">
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                      <a class="dropdown-item" href="#">Cerrar Sesión</a>
+                                      <!-- <div class="dropdown-divider"></div> -->
+                                    </div>
+                            </li>
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="configuracion.php">
                                 <div>
                                     <img src="./../img/perfil_1.jpg" width="40px" alt="imagen" class="rounded-circle">
                                 </div>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
         
@@ -58,7 +71,7 @@ and open the template in the editor.
         <div class="container">
             <div id="perfil-usuario"class="row">
                 <div class="col-md-4 col-12">
-                    <div id="tarjeta-perfil"class="row shadow-sm">
+                    <div id="tarjeta-perfil"class="row shadow-sm d-none d-sm-block " >
                         <div id="banner-perfil" class="col-12"></div>
                         <div class="col-12">
                             <div class="row">
@@ -114,12 +127,15 @@ and open the template in the editor.
                             </div>
                         </div-->
                     </div>
+
                 </div>
 
-                <div class="col-md-8 col-12" style="border: solid;">
-                    Estadisticas de avance
-                    <p>Aqui estaran estadisticas de la persona</p>
+                <div class="col-md-8 col-12" style="margin-top:40px;">
+                    <!-- <div class="col-md-8 col-12" style="border: solid;"></div> -->
+                    <h2 class="text-center">Mis estadisticas</h2>
+                    <canvas id="myChart" width="400" height="250"></canvas>
                 </div>
+                
             </div>
         </div>
 
@@ -152,4 +168,32 @@ and open the template in the editor.
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     </body>
+
+    <script>
+        var ctx= document.getElementById("myChart").getContext("2d");
+        var myChart= new Chart(ctx,{
+            type:"bar",
+            data:{
+                labels:['Arboles','Campañas','Donaciones'],
+                datasets:[{
+                        label:'Num datos',
+                        data:[15,2,3],
+                        backgroundColor:[
+                            'rgb(66, 134, 244,0.5)',
+                            'rgb(74, 135, 72,0.5)',
+                            'rgb(229, 89, 50,0.5)'
+                        ]
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                    }]
+                }
+            }
+        });
+    </script>
 </html>

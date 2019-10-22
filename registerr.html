@@ -7,14 +7,35 @@ and open the template in the editor.
 <html>
 
 <head>
-    <title>Perfil</title>
+    <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/principal.css">
-    <link rel="stylesheet" href="css/comunidad.css">+
+    <link rel="stylesheet" href="css/comunidad.css">
 
-    <!-- <link rel="stylesheet" href="css/Chart.css"> -->
+    <link rel="stylesheet" href="css/Chart.css">
+
+  <!-- Import and configure the Firebase SDK -->
+  <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+  <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+  <script src="/__/firebase/6.4.1/firebase-app.js"></script>
+  <script src="/__/firebase/6.4.1/firebase-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
+
+    <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyB4CgA911BNu-K3Irkymn9y127Rr3Chml8",
+        authDomain: "reforest-cc105.firebaseapp.com",
+        databaseURL: "https://reforest-cc105.firebaseio.com",
+        projectId: "reforest-cc105",
+        storageBucket: "",
+        messagingSenderId: "949319571597",
+        appId: "1:949319571597:web:44be13746ff7d5b3"
+        };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    </script>
 
 </head>
 
@@ -44,7 +65,7 @@ and open the template in the editor.
                             <a class="nav-link" href="campañas.html">Campañas</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="comunidad/index.html">Comunidad</a>
+                            <a class="nav-link" href="comunidad.html">Comunidad</a>
                         </li>
                     </ul>
 
@@ -83,7 +104,7 @@ and open the template in the editor.
                     <br>
                     <p>Gracias por hacer del mundo un lugar mejor!</p>
                     <p>Escribe tu información para unirte</p>
-                    <form action="/register.html">
+                    <!-- <form> -->
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
                             <input type="text" class="form-control" id="nombre" placeholder="Nombre">
@@ -98,85 +119,68 @@ and open the template in the editor.
                         </div>
                         <div class="form-group">
                             <label for="pwd">Contraseña:</label>
-                            <input type="password" class="form-control" id="contra" placeholder="Contraseña">
+                            <input type="password" class="form-control" id="pwd" placeholder="Contraseña">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Repetir contraseña:</label>
-                            <input type="re_password" class="form-control" id="contraRep"
-                                placeholder="Repetir contraseña:">
+                            <input type="password" class="form-control" id="r_pwd" placeholder="Repetir contraseña:">
                         </div>
                         <span>Ya tienes cuenta?</span> <a href="login.html">
                             <span style="color:#58d68d ">Iniciar sesión</span>
                         </a>
                         <br>
-                        <button id="btnRegistrar" type="button" class="btn btn-primary">Registrarme</button>
+                        <button onclick="registrar()" class="btn btn-primary">Registrarme</button>
 
-                    </form>
+                    <!-- </form> -->
                 </div>
 
             </div>
         </div>
 
 
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
-
-        <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-
         <script>
-            // Your web app's Firebase configuration
-            var firebaseConfig = {
-                apiKey: "AIzaSyB4CgA911BNu-K3Irkymn9y127Rr3Chml8",
-                authDomain: "reforest-cc105.firebaseapp.com",
-                databaseURL: "https://reforest-cc105.firebaseio.com",
-                projectId: "reforest-cc105",
-                storageBucket: "",
-                messagingSenderId: "949319571597",
-                appId: "1:949319571597:web:44be13746ff7d5b3"
-            };
+         function registrar() {
+             console.log("registrar");
 
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
+             var correo = document.getElementById('email').value;
+             var nombre = document.getElementById('nombre').value;
+             var apellido = document.getElementById('apellido').value;
+             var contrasena = document.getElementById('pwd').value;
+             var repcontrasena = document.getElementById('r_pwd').value;
 
-            var txtNombre = document.getElementById('nombre');
-            var txtApellido = document.getElementById('apellido');
-            var txtCorreo = document.getElementById('email');
-            var txtContra = document.getElementById('contra');
-            var txtContraRep = document.getElementById('contraRep');
-            var btnRegistrar = document.getElementById('btnRegistrar');
+             console.log(correo + " " + nombre + " " + apellido + " " + contrasena + " " + repcontrasena);
 
-            btnRegistrar.addEventListener('click', function () {
-                var nombre = txtNombre.value;
-                var apellido = txtApellido.value;
-                var correo = txtCorreo.value;
-                var contra = txtContra.value;
-                var contraRep = txtContraRep.value;
 
-                // var html = "<li><b>" + nombre + ": </b>" + mensaje + "</li>";
-                // chatUl.innerHTML += html;
+                if(contrasena == repcontrasena){
+                    var password = contrasena;
+                    var email = correo;
 
-                firebase.auth().createUserWithEmailAndPassword(correo, contra).catch(function (error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    // ...
-                });
+      
+                    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+                }else{
+                    console.log("Las contaseñas no coinciden");
+                }
 
-                if (firebase.auth().currentUser !== null) 
-        // console.log("user id: " + firebase.auth().currentUser.uid);
-        var user_cur = firebase.auth().currentUser.uid;
-                firebase.database().ref('usuario').child(user_cur).set({
-                    nombre: nombre,
-                    apellido: apellido,
-                    correo: correo,
-                    rating: '0'
-                });
-            });
+          
 
+         }
         </script>
+
+          <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="/__/firebase/6.2.0/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="/__/firebase/6.2.0/firebase-auth.js"></script>
+  <script src="/__/firebase/6.2.0/firebase-firestore.js"></script>
+    
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>

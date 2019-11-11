@@ -170,7 +170,26 @@ and open the template in the editor.
 
     </body>
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
+
     <script>
+        
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB4CgA911BNu-K3Irkymn9y127Rr3Chml8",
+            authDomain: "reforest-cc105.firebaseapp.com",
+            databaseURL: "https://reforest-cc105.firebaseio.com",
+            projectId: "reforest-cc105",
+            storageBucket: "",
+            messagingSenderId: "949319571597",
+            appId: "1:949319571597:web:44be13746ff7d5b3"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
         var ctx= document.getElementById("myChart").getContext("2d");
         var myChart= new Chart(ctx,{
             type:"bar",

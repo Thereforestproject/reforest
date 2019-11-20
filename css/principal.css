@@ -97,7 +97,7 @@ button.bg-primary:focus {
 
 
   #hero{
-      background-image: url(/img/bosque.png);
+      background-image: url(img/bosque.png);
       background-size: cover;
       padding-top: 100px;
       min-height: 550px;

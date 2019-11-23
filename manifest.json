@@ -6,11 +6,11 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "icon_144.png",
+      "src": "144.png",
       "sizes": "144x144"
     },
     {
-      "src": "192.png",
+      "src": "i192.png",
       "sizes": "192x192"
     }
   ],

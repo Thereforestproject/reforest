@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/principal.css">
+    <link rel="stylesheet" href="css/comunidad.css">
+
+    <link rel="stylesheet" href="css/Chart.css">
+
+  <!-- Import and configure the Firebase SDK -->
+  <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+  <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+  <script src="/__/firebase/6.4.1/firebase-app.js"></script>
+  <script src="/__/firebase/6.4.1/firebase-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
+
+    <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyB4CgA911BNu-K3Irkymn9y127Rr3Chml8",
+        authDomain: "reforest-cc105.firebaseapp.com",
+        databaseURL: "https://reforest-cc105.firebaseio.com",
+        projectId: "reforest-cc105",
+        storageBucket: "",
+        messagingSenderId: "949319571597",
+        appId: "1:949319571597:web:44be13746ff7d5b3"
+        };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    </script>
+
+</head>
+
+<body>
+
+    <header class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/reforest.png" height="30" alt="log-reforest" title="logo-reforest">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="container-fluid
+                     ">
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio
+                                <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="campañas.html">Campañas</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="comunidad.html">Comunidad</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="donaciones.php">
+                                <button type="button" class="btn btn-primary">
+                                    Donar
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </nav>
+    </header>
+
+
+    <div style="padding-top:105px;">
+    </div>
+
+    <div class="container-fluid" style="display: block;">
+        <div class="row">
+            <div class="col d-none d-sm-block">
+                <img src="img/back_.png">
+            </div>
+            <div class="col">
+                <div class="formulario">
+                    <h1>Bienvenido a Reforest</h1>
+                    <br>
+                    <p>Gracias por hacer del mundo un lugar mejor!</p>
+                    <p>Escribe tu información para unirte</p>
+                    <!-- <form> -->
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="apellido">Apellido:</label>
+                            <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Correo">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Contraseña:</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Contraseña">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Repetir contraseña:</label>
+                            <input type="password" class="form-control" id="r_pwd" placeholder="Repetir contraseña:">
+                        </div>
+                        <span>Ya tienes cuenta?</span> <a href="login.html">
+                            <span style="color:#58d68d ">Iniciar sesión</span>
+                        </a>
+                        <br>
+                        <button onclick="registrar()" class="btn btn-primary">Registrarme</button>
+
+                    <!-- </form> -->
+                </div>
+
+            </div>
+        </div>
+
+
+        <script>
+         function registrar() {
+             console.log("registrar");
+
+             var correo = document.getElementById('email').value;
+             var nombre = document.getElementById('nombre').value;
+             var apellido = document.getElementById('apellido').value;
+             var contrasena = document.getElementById('pwd').value;
+             var repcontrasena = document.getElementById('r_pwd').value;
+
+             console.log(correo + " " + nombre + " " + apellido + " " + contrasena + " " + repcontrasena);
+
+
+                if(contrasena == repcontrasena){
+                    var password = contrasena;
+                    var email = correo;
+
+      
+                    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+                }else{
+                    console.log("Las contaseñas no coinciden");
+                }
+
+          
+
+         }
+        </script>
+
+          <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="/__/firebase/6.2.0/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="/__/firebase/6.2.0/firebase-auth.js"></script>
+  <script src="/__/firebase/6.2.0/firebase-firestore.js"></script>
+    
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+</body>
+
+</html>

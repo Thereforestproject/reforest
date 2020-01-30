@@ -1,0 +1,22 @@
+{
+  "name": "Reforest",
+  "short_name": "Reforest",
+  "background_color": "#58D68D",
+  "theme_color": "#3BA668",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "i144.png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "i192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "i512.png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index.html?launcher=true"
+}
